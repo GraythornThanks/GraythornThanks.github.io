@@ -4,16 +4,16 @@
   
     
     <entry>
-      <title>动态规划学习笔记</title>
-      <link href="/2022/07/19/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-      <url>/2022/07/19/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+      <title>基本算法思想汇总</title>
+      <link href="/2022/07/20/%E5%9F%BA%E6%9C%AC%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3%E6%B1%87%E6%80%BB/"/>
+      <url>/2022/07/20/%E5%9F%BA%E6%9C%AC%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3%E6%B1%87%E6%80%BB/</url>
       
-        <content type="html"><![CDATA[<h2 id="动态规划-Dynamic-Programming">动态规划 Dynamic Programming</h2><h3 id="线性DP">线性DP</h3><ol><li>LIS 最长上升子序列</li></ol>]]></content>
+        <content type="html"><![CDATA[<h2 id="位运算">位运算</h2>]]></content>
       
       
       <categories>
           
-          <category> 算法 </category>
+          <category> 算法 基本算法 </category>
           
       </categories>
       
