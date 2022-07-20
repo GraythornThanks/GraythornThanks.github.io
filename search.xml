@@ -8,7 +8,7 @@
       <link href="/2022/07/20/%E5%9F%BA%E6%9C%AC%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3%E6%B1%87%E6%80%BB/"/>
       <url>/2022/07/20/%E5%9F%BA%E6%9C%AC%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3%E6%B1%87%E6%80%BB/</url>
       
-        <content type="html"><![CDATA[<h2 id="位运算">位运算</h2>]]></content>
+        <content type="html"><![CDATA[<h2 id="位运算">位运算</h2><p>bit是度量信息的单位，包含0和1两种状态。熟悉掌握位运算，能够帮助我们理解程序运行中的种种表现，提高程序运行的时空效率，降低编程复杂度</p><p>基本位运算</p><table><thead><tr><th style="text-align:center">与</th><th style="text-align:center">或</th><th style="text-align:center">非</th><th style="text-align:center">异或</th></tr></thead><tbody><tr><td style="text-align:center">&amp;</td><td style="text-align:center">|</td><td style="text-align:center">~</td><td style="text-align:center">^</td></tr></tbody></table>]]></content>
       
       
       <categories>
