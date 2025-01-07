@@ -14,19 +14,12 @@ authors:
 
 <!-- more -->
 
+## 核心机制：元对象系统
 
-## 1. 继承关系
+### 信号和槽
 
-QObject 是 Qt 中所有类的基类，它提供了信号和槽机制，以及事件处理机制
-QObject -> QWidget -> QMainWindow
-                   -> QFrame  -> QLabel
-        -> QApplication
-        -> QFile
-        
+### 事件
 
-## 2. useful tools
+### 属性
 
-QDebug
-
-QString
-
+### 对象树

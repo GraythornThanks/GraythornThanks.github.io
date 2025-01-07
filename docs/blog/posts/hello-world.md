@@ -289,7 +289,14 @@ Todo
 
 ### 6.2 GitHub Pages部署
 
-Todo
+首先在 `mkdocs.yml` 中配置 `repo_url` 和 `repo_name`
+
+```yaml
+repo_url: https://github.com/GraythornThanks/GraythornThanks.github.io
+repo_name: GraythornThanks/GraythornThanks.github.io
+```
+
+然后执行以下命令：
 
 ```bash
 # 构建站点
