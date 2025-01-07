@@ -1,0 +1,53 @@
+# Python 虚拟环境
+venv/
+env/
+.env/
+.venv/
+
+# Python 缓存文件
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+
+# MkDocs 构建目录
+site/
+build/
+
+# IDE 配置文件
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# 系统文件
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# 日志文件
+*.log
+logs/
+
+# 临时文件
+*.tmp
+*.bak
+*.swp
+*~
+
+# 依赖锁定文件（可选，取决于您是否想要版本控制它们）
+# pip-lock.txt
+# poetry.lock
+# Pipfile.lock
+
+# 本地配置文件
+.env
+.env.local
+*.local
+
+# 其他
+.directory
+.Trash-* 

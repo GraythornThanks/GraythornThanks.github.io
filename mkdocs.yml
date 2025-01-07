@@ -1,0 +1,136 @@
+# 网站基本信息
+site_name: Graythorn's Blog              # 网站名称
+site_author: Graythorn                # 作者名称
+site_description: A personal blog built with MkDocs  # 网站描述
+
+# 主题配置
+theme:
+  name: material                      # 使用 Material 主题
+  features:                           # 主题功能特性
+    - navigation.tabs                 # 顶部导航标签
+    - navigation.sections             # 导航分区
+    - navigation.top                  # 返回顶部按钮
+    - search.suggest                  # 搜索建议
+    - search.highlight               # 搜索结果高亮
+    - content.code.copy              # 代码块复制按钮
+    - content.code.annotate         # 代码注释功能
+  
+  # 配色方案
+  palette:
+    # 浅色主题
+    - scheme: default                 # 默认配色方案
+      primary: indigo                 # 主要颜色
+      accent: indigo                  # 强调颜色
+      toggle:
+        icon: material/brightness-7   # 切换图标
+        name: Switch to dark mode     # 切换提示文本
+    
+    # 深色主题
+    - scheme: slate                   # 深色配色方案
+      primary: indigo                 # 主要颜色
+      accent: indigo                  # 强调颜色
+      toggle:
+        icon: material/brightness-4   # 切换图标
+        name: Switch to light mode    # 切换提示文本
+  
+  # 字体设置
+  font:
+    text: Roboto                      # 正文字体
+    code: Roboto Mono                 # 代码字体
+  
+  # 图标设置
+  icon:
+    logo: material/book-open-page-variant  # 网站 logo
+
+# Markdown 扩展配置
+markdown_extensions:
+  # 代码高亮配置
+  - pymdownx.highlight:
+      anchor_linenums: true          # 显示行号
+  - pymdownx.inlinehilite            # 行内代码高亮
+  - pymdownx.snippets                # 代码片段
+  - pymdownx.superfences             # 支持嵌套代码块
+  
+  # Emoji 支持
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  
+  # 其他 Markdown 扩展
+  - admonition                       # 提示块
+  - footnotes                        # 脚注
+  - meta                             # 元数据
+  - def_list                         # 定义列表
+  - attr_list                        # 属性列表
+  - md_in_html                       # HTML 中的 Markdown
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.tilde                   # 支持删除线
+  - pymdownx.mark                    # 支持高亮
+  - pymdownx.caret                   # 支持上标
+  - pymdownx.critic                  # 支持修订
+  - pymdownx.keys                    # 支持按键显示
+  - pymdownx.smartsymbols           # 支持特殊符号
+  
+  # 目录和锚点配置
+  - toc:
+      permalink: true           # 在标题旁显示锚点链接
+      permalink_title: 锚点     # 锚点链接的标题
+      separator: "_"           # 锚点分隔符
+      toc_depth: 3             # 目录深度
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+          percent_encode: true
+
+# 插件配置
+plugins:
+  - search                           # 搜索功能
+  - tags                             # 标签功能
+  - blog:                            # 博客插件配置
+      blog_dir: blog                 # 博客目录
+      post_url_format: "{date}/{slug}"  # 文章 URL 格式
+      post_url_date_format: "YYYY/MM"   # 日期格式
+      draft_if_future_date: true     # 未来日期文章作为草稿
+      draft_on_serve: true           # 本地预览时显示草稿
+      authors: true                  # 启用作者功能
+      authors_file: "{blog}/.authors.yml"  # 作者配置文件
+      pagination: true               # 启用分页
+      pagination_per_page: 5         # 每页显示文章数
+      pagination_format: "~2~"       # 分页格式
+      post_excerpt: required         # 文章摘要设置为必需
+      post_excerpt_separator: <!-- more -->  # 摘要分隔符
+      categories_allowed:            # 允许的分类
+        - C++
+        - Python
+        - OpenGL
+        - other
+
+# 额外配置
+extra:
+  social:                            # 社交媒体链接
+    - icon: fontawesome/brands/github    # GitHub 图标
+      link: https://github.com/yourusername  # GitHub 链接
+    # - icon: fontawesome/brands/twitter   # Twitter 图标
+    #   link: https://twitter.com/yourusername  # Twitter 链接
+
+# 导航配置
+nav:
+  - Home: index.md                   # 首页
+  - Blog:                            # 博客页面
+    - blog/index.md
+  # - Categories: tags.md              # 分类页面
+  # - About: about.md                  # 关于页面
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+# 部署配置
+repo_url: https://github.com/GraythornThanks/GraythornThanks.github.io 
+repo_name: GraythornThanks/GraythornThanks.github.io
+edit_uri: edit/main/docs/
+
+extra_css:
+  - stylesheets/extra.css
