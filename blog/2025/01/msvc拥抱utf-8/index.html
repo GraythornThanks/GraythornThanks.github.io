@@ -1,0 +1,1224 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A personal blog built with MkDocs">
+      
+      
+        <meta name="author" content="Graythorn">
+      
+      
+      
+        <link rel="prev" href="../../../2024/12/c-%E5%92%8C-python-%E6%B7%B7%E5%90%88%E7%BC%96%E7%A8%8B/">
+      
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>MSVC拥抱UTF-8 - Graythorn's Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#msvc%E6%8B%A5%E6%8A%B1utf-8" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Graythorn&#39;s Blog" class="md-header__button md-logo" aria-label="Graythorn's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Graythorn's Blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              MSVC拥抱UTF-8
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/GraythornThanks/GraythornThanks.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GraythornThanks/GraythornThanks.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Graythorn&#39;s Blog" class="md-nav__button md-logo" aria-label="Graythorn's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19 2-5 4.5v11l5-4.5zM6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5"/></svg>
+
+    </a>
+    Graythorn's Blog
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/GraythornThanks/GraythornThanks.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GraythornThanks/GraythornThanks.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Blog
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Archive
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2025/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2025
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2024/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2024
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Categories
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/c/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C++
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#%E7%BC%96%E7%A0%81%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86" class="md-nav__link">
+    <span class="md-ellipsis">
+      编码的基础知识
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="编码的基础知识">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#%E5%AD%97%E7%AC%A6%E9%9B%86" class="md-nav__link">
+    <span class="md-ellipsis">
+      字符集
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81" class="md-nav__link">
+    <span class="md-ellipsis">
+      字符编码
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bom" class="md-nav__link">
+    <span class="md-ellipsis">
+      BOM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#%E5%8C%BA%E5%9F%9F%E8%AE%BE%E7%BD%AE" class="md-nav__link">
+    <span class="md-ellipsis">
+      区域设置
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#c_%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81" class="md-nav__link">
+    <span class="md-ellipsis">
+      C++ 中的字符编码
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="C++ 中的字符编码">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#%E6%BA%90%E7%A0%81%E5%AD%97%E7%AC%A6%E9%9B%86%E5%92%8C%E6%89%A7%E8%A1%8C%E5%AD%97%E7%AC%A6%E9%9B%86" class="md-nav__link">
+    <span class="md-ellipsis">
+      源码字符集和执行字符集
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c_%E4%B8%AD%E8%B7%A8%E5%B9%B3%E5%8F%B0%E5%BA%94%E8%AF%A5%E6%80%8E%E4%B9%88%E5%81%9A" class="md-nav__link">
+    <span class="md-ellipsis">
+      C++ 中跨平台应该怎么做
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qt_%E4%B8%AD%E7%9A%84%E7%BC%96%E7%A0%81%E9%97%AE%E9%A2%98" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qt 中的编码问题
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#%E5%90%84%E7%A7%8D%E8%AF%AD%E8%A8%80%E5%B7%A5%E5%85%B7%E9%80%89%E6%8B%A9%E7%9A%84%E5%86%85%E7%A0%81" class="md-nav__link">
+    <span class="md-ellipsis">
+      各种语言/工具选择的内码
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#%E5%90%84%E7%BC%96%E7%A0%81%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C" class="md-nav__link">
+    <span class="md-ellipsis">
+      各编码的字符串操作
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#%E5%B8%B8%E8%A7%81%E4%B9%B1%E7%A0%81" class="md-nav__link">
+    <span class="md-ellipsis">
+      常见乱码
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99" class="md-nav__link">
+    <span class="md-ellipsis">
+      参考资料
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="https://avatars.githubusercontent.com/u/0" alt="GraythornThanks">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>
+                        
+                          GraythornThanks
+                        
+                      </strong>
+                      <br>
+                      Site Administrator
+                    </span>
+                  </div>
+                
+              </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2025-01-02 00:00:00+00:00" class="md-ellipsis">January 2, 2025</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../category/c/">C++</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              4 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+  
+
+<nav class="md-tags" >
+  
+    
+    
+    
+      <span class="md-tag">MSVC</span>
+    
+  
+    
+    
+    
+      <span class="md-tag">UTF-8</span>
+    
+  
+    
+    
+    
+      <span class="md-tag">C++</span>
+    
+  
+</nav>
+
+
+  
+  
+
+
+<h1 id="msvc%E6%8B%A5%E6%8A%B1utf-8">MSVC拥抱UTF-8<a class="headerlink" href="#msvc%E6%8B%A5%E6%8A%B1utf-8" title="锚点">&para;</a></h1>
+<p>msvc默认使用locale相关的编码设置，这通常是跨平台不友好的，甚至将Visual Studio的工程文件用vscode打开都会导致乱码，文中将介绍如何设置msvc拥抱UTF-8编码</p>
+<!-- more -->
+
+<h2 id="%E7%BC%96%E7%A0%81%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86">编码的基础知识<a class="headerlink" href="#%E7%BC%96%E7%A0%81%E7%9A%84%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86" title="锚点">&para;</a></h2>
+<p>为什么是UTF-8？请参考<a href="https://utf8everywhere.org/zh-cn">UTF-8 遍地开花</a></p>
+<h3 id="%E5%AD%97%E7%AC%A6%E9%9B%86">字符集<a class="headerlink" href="#%E5%AD%97%E7%AC%A6%E9%9B%86" title="锚点">&para;</a></h3>
+<div class="admonition question">
+<p class="admonition-title">什么是字符集？</p>
+<p>字符集是字符的集合，字符集中的每个字符都有一个唯一的标识符，计算机不能直接存储字符，而是用数字表示字符</p>
+</div>
+<p>常见字符集：</p>
+<ul>
+<li>ASCII 基本拉丁字母 共7位，128个字符</li>
+<li>Latin-1 补充了ASCII字符集，保持原有不变，追加了128到255的映射关系 共8位，256个字符</li>
+<li>Unicode 为世界上每个字符分配一个16位的二进制码，出于兼容考虑，在0到256的映射关系与ASCII、Latin-1一致，Unicode 字符映射的整数范围是 0x0 到 0x10FFFF</li>
+<li>GB2312 Todo</li>
+<li>GBK Todo</li>
+<li>GB18030 Todo</li>
+</ul>
+<p>当计算机存储字符时，实际是存储了对应的码点，码点 <code>code point</code> 是字符集中的字符的唯一标识符</p>
+<h3 id="%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81">字符编码<a class="headerlink" href="#%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81" title="锚点">&para;</a></h3>
+<div class="admonition question">
+<p class="admonition-title">字符编码是什么？</p>
+<p>字符集只规定了字符的映射，未规定字符在内存中如何存在，可以认为字符编码是字符集的实现，将字符的整数编号序列化为计算机可直接存储的一个或多个实际存在的整数类型</p>
+</div>
+<p>Unicode 字符可以选用以下这些字符编码来序列化：</p>
+<ul>
+<li>UTF-32: 每个 Unicode 字符用 1 个 uint32_t 整数存储。</li>
+<li>UTF-16: 每个 Unicode 字符用 1 至 2 个 uint16_t 整数存储。</li>
+<li>UTF-8: 每个 Unicode 字符用 1 至 4 个 uint8_t 整数存储。</li>
+</ul>
+<p>翻译出来的这些小整数叫 码位 (code unit)。uint8_t就是Utf-8的码位</p>
+<h4 id="utf-32">UTF-32<a class="headerlink" href="#utf-32" title="锚点">&para;</a></h4>
+<p>UTF-32一个码点对应一个码位，是一种定长编码</p>
+<p><strong>优点：</strong></p>
+<ul>
+<li>可以直接索引、切片、反转，不会破坏字符，方便文本处理</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>浪费空间</li>
+</ul>
+<h4 id="utf-8">UTF-8<a class="headerlink" href="#utf-8" title="锚点">&para;</a></h4>
+<p>Unicode 编码字符时，特意把常用的字符靠前排列了，UTF-32虽然方便文本处理但过于浪费空间，不利于存储</p>
+<p>世界上常用语言文字都被刻意编码在了 0 到 0xFFFF 区间内，超过 0x10000 的基本都是不常用的字符</p>
+<p>在 0 到 0xFFFF 区间内，同样有按照常用度排序：</p>
+<ul>
+<li>0 到 0x7F 是（欧美用户）最常用的英文字母、阿拉伯数字、半角标点。</li>
+<li>0x80 到 0x7FF 是表音文字区，常用的注音字母、拉丁字母、希腊字母、西里尔字母、希伯来字母等</li>
+<li>0x800 到 0xFFFF 是表意文字，简繁中文、日文、韩文、泰文、马来文、阿拉伯文等
+-0x10000 到 0x10FFFF 是不常用的稀有字符，例如甲骨文、埃及象形文字、Emoji 等</li>
+</ul>
+<p>UTF-8 把一个码点序列化为一个或多个码位，一个码位用 1 至 4 个 uint8_t 整数表示。</p>
+<ul>
+<li>0 到 0x7F 范围内的字符，用 1 个字节表示。</li>
+<li>0x80 到 0x7FF 范围内的字符，用 2 个字节表示。</li>
+<li>0x800 到 0xFFFF 范围内的字符，用 3 个字节表示。</li>
+<li>0x10000 到 0x10FFFF 范围内的字符，用 4 个字节表示。</li>
+</ul>
+<p>由此可见，UTF-8 作为变长编码，一个码点可能对应多个码位</p>
+<p><strong>优点：</strong></p>
+<ul>
+<li>节省空间</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>数组的长度，不一定是字符串中实际字符的个数。因此，要取出单个字符，需要遍历数组，逐个解析码位。</li>
+<li>数组的单个元素索引，无法保证取出一个完整的字符。</li>
+<li>对数组的切片，可能会把一个独立的字符切坏。</li>
+<li>反转数组，不一定能把字符串的反转，因为可能不慎把一个字符的多个码位反转，导致字符破坏。</li>
+</ul>
+<h4 id="utf-16">UTF-16<a class="headerlink" href="#utf-16" title="锚点">&para;</a></h4>
+<p>Todo</p>
+<h4 id="%E5%AD%97%E8%8A%82%E5%BA%8F%E9%97%AE%E9%A2%98">字节序问题<a class="headerlink" href="#%E5%AD%97%E8%8A%82%E5%BA%8F%E9%97%AE%E9%A2%98" title="锚点">&para;</a></h4>
+<p>多字节的整数类型（如 uint16_t 和 uint32_t）需要被拆成多个字节来存储。拆开后的高位和低位按什么顺序存入内存？</p>
+<ul>
+<li>
+<p>大端字节序 (bit endian)：低地址存放整数的高位，高地址存放整数的低位，也就是大数靠前！这样数值的高位和低位和人类的书写习惯一致。</p>
+</li>
+<li>
+<p>小端字节序 (little endian)：低地址存放整数的低位，高地址存放整数的高位，也就是小数靠前！这样数值的高位和低位和计算机电路的计算习惯一致。</p>
+</li>
+</ul>
+<blockquote>
+<p>Intel 的 x86 架构和 ARM 公司的 ARM 架构都是小端，C#游戏业务居多为了性能采用小端，而互联网一般规定多字节的数据在网络包中采用大端，Java面向互联网业务居多所以JVM采用大端，而C++通常根据的是机器的大小端</p>
+</blockquote>
+<p>UTF-16 和 UTF-32 的码位都是多字节的，也会有大小端问题</p>
+<p>可以进一步将UTF-16和UTF-32的分为：</p>
+<ul>
+<li>UTF-16LE：小端的 UTF-16</li>
+<li>UTF-16BE：大端的 UTF-16</li>
+<li>UTF-32LE：小端的 UTF-32</li>
+<li>UTF-32BE：大端的 UTF-32</li>
+</ul>
+<p>如果只在内存的 wchar_t 中使用就不用区分，默认跟随当前机器的大小端。所以 UTF-16 和 UTF-32 通常只会出现在内存中用于快速处理和计算，很少用在存储和通信中</p>
+<p>总之，完全基于字节的 UTF-8 是最适合网络通信和硬盘存储的文本编码格式，UTF-16 和 UTF-32 通常只用于内存中，UTF-32 是最适合在内存中处理文本的格式</p>
+<h3 id="bom">BOM<a class="headerlink" href="#bom" title="锚点">&para;</a></h3>
+<p>BOM(Byte Order Mark) 端序标记, 是位于码点U+FEFF的统一码字符的名称。</p>
+<p>0xFEFF 是一个特殊的不可见字符，一个零宽空格，在不同的编码下会产生不同的结果：</p>
+<ul>
+<li>UTF-8：0xEF 0xBB 0xBF，他会占用 3 字节，而且不会告诉你是大端还是小端，因为 UTF-8 是没有大小端问题的。</li>
+<li>UTF-16：如果是大端，就是 0xFE 0xFF，如果是小端，就是 0xFF 0xFE。</li>
+<li>UTF-32：如果是大端，就是 0x00 0x00 0xFE 0xFF，如果是小端，就是 0xFF 0xFE 0x00 0x00。</li>
+</ul>
+<p>所以，端序标记可以用来</p>
+<ol>
+<li>区分端序</li>
+<li>区分编码</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Windows 环境中，所有的文本文件都被默认假定为 ANSI（GBK）编码，如果你要保存文本文件为 UTF-8 编码，就需要加上 BOM 标志。当 MSVC 读取时，看到开头是 0xEF 0xBB 0xBF，就明白这是一个 UTF-8 编码的文件。这样，MSVC 就能正确地处理中文字符串常量了。如果 MSVC 没看到 BOM，会默认以为是 ANSI（GBK）编码的，从而中文字符串常量会乱码。MSVC 中开启 /utf-8 选项也能让 MSVC 把没有 BOM 的源码文件当作 UTF-8 来解析</p>
+</div>
+<h3 id="%E5%8C%BA%E5%9F%9F%E8%AE%BE%E7%BD%AE">区域设置<a class="headerlink" href="#%E5%8C%BA%E5%9F%9F%E8%AE%BE%E7%BD%AE" title="锚点">&para;</a></h3>
+<p>对于中国区 Windows 来说，区域设置默认是 GBK。对于美国区 Windows 来说，区域设置默认是 UTF-8</p>
+<p>对于 Linux 用户来说，如果你没有专门修改过，$LC_ALL 默认是 en_US.UTF-8 或 C.UTF-8</p>
+<div class="admonition note">
+<p class="admonition-title">Windows中的ANSI与Unicode</p>
+<ul>
+<li>Windows官方的说法中，ANSI是区域设置中设置的编码格式，ANSI码仅在前128（0-127）个与ASCII码相同，之后的字符全是某个国家语言的所有字符。中国制定了GB2312编码，用来把中文编进去另外，日本把日文编到Shift_JIS里，韩国把韩文编到Euc-kr里，各国有各国的标准。不同语言之间的ANSI码之间不能互相转换，这就会导致在多语言混合的文本中会有乱码</li>
+<li>Unicode指的是UTF-16</li>
+<li>UTF-8 指的是 UTF-8 with BOM 而不是正常的 UTF-8</li>
+</ul>
+</div>
+<p>由于在安装系统时通常会选择区域为中国，语言为中文，导致系统默认编码为GBK，以致于msvc会默认使用GBK编码，包括控制台的默认输出也会选择GBK编码</p>
+<h2 id="c_%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81">C++ 中的字符编码<a class="headerlink" href="#c_%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81" title="锚点">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>大小</th>
+<th>编码</th>
+<th>字面量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows<code>char</code></td>
+<td>1字节</td>
+<td>取决于区域系统设置</td>
+<td><code>u8'a'</code></td>
+</tr>
+<tr>
+<td>Linux  <code>char</code></td>
+<td>1字节</td>
+<td>取决于<code>$LC_ALL</code></td>
+<td><code>u8'a'</code></td>
+</tr>
+<tr>
+<td>Windows<code>wchar_t</code></td>
+<td>2字节</td>
+<td>UTF-16LE</td>
+<td><code>L'a'</code></td>
+</tr>
+<tr>
+<td>Linux  <code>wchar_t</code></td>
+<td>2字节</td>
+<td>UTF-32</td>
+<td><code>L'a'</code></td>
+</tr>
+<tr>
+<td>C++20 <code>char8_t</code></td>
+<td>1字节</td>
+<td>UTF-8</td>
+<td><code>u8"hello"</code></td>
+</tr>
+<tr>
+<td>C++20 <code>char16_t</code></td>
+<td>2字节</td>
+<td>UTF-16</td>
+<td><code>u"hello"</code></td>
+</tr>
+<tr>
+<td>C++20 <code>char32_t</code></td>
+<td>4字节</td>
+<td>UTF-32</td>
+<td><code>U"hello"</code></td>
+</tr>
+</tbody>
+</table>
+<p>可见，char和wchar_t都是不跨平台的，而char8_t、char16_t、char32_t等跨平台字符类型从C++20开始才支持</p>
+<p>并且根据上述编码相关内容，C++中的字符类型应该为<code>wchar_t</code>，字符串类型为<code>std::wstring</code>，而<code>std::string/std::vector&lt;char&gt;</code>属于字节流</p>
+<blockquote>
+<p>wchar_t 被提出用于支持宽字符操作，但是从上表中可知该类型是作为标准中的原生类型却不跨平台的！</p>
+</blockquote>
+<h3 id="%E6%BA%90%E7%A0%81%E5%AD%97%E7%AC%A6%E9%9B%86%E5%92%8C%E6%89%A7%E8%A1%8C%E5%AD%97%E7%AC%A6%E9%9B%86">源码字符集和执行字符集<a class="headerlink" href="#%E6%BA%90%E7%A0%81%E5%AD%97%E7%AC%A6%E9%9B%86%E5%92%8C%E6%89%A7%E8%A1%8C%E5%AD%97%E7%AC%A6%E9%9B%86" title="锚点">&para;</a></h3>
+<p>源码字符集(the source character set)：源码文件是使用何种编码保存的</p>
+<p>执行字符集(the execution character set)：可执行程序内保存的是何种编码(程序执行时内存中字符串编码)</p>
+<p>如何设置源码字符集和执行字符集：</p>
+<ul>
+<li>MSVC 中开启<code>/utf-8</code> 或 <code>/execution-charset:UTF-8</code> <code>/source-charset:UTF-8</code></li>
+<li>MinGW 中开启<code>-finput-charset=UTF-8</code> <code>-fexec-charset=UTF-8</code></li>
+</ul>
+<h3 id="c_%E4%B8%AD%E8%B7%A8%E5%B9%B3%E5%8F%B0%E5%BA%94%E8%AF%A5%E6%80%8E%E4%B9%88%E5%81%9A">C++ 中跨平台应该怎么做<a class="headerlink" href="#c_%E4%B8%AD%E8%B7%A8%E5%B9%B3%E5%8F%B0%E5%BA%94%E8%AF%A5%E6%80%8E%E4%B9%88%E5%81%9A" title="锚点">&para;</a></h3>
+<p>开发阶段</p>
+<div class="admonition question">
+<p class="admonition-title">经过上述讨论，导致乱码的主要原因是什么</p>
+<p>最主要原因：平台api使用的编码与执行字符集不一致，导致平台api调用时乱码</p>
+<ul>
+<li>平台api：在控制台输入输出、文件读写、文件路径、标准库调用系统API</li>
+<li>执行字符集：程序执行时内存中字符串编码</li>
+</ul>
+</div>
+<p><strong>一种解决方案是：</strong></p>
+<ul>
+<li>Windows + MSVC 中开启<code>/utf-8</code> 选项</li>
+<li>Windows + MinGW 中开启<code>-finput-charset=UTF-8</code> <code>-fexec-charset=UTF-8</code></li>
+<li>Linux + GCC 所有字符集默认为UTF-8</li>
+<li>所有源码文件统一以 UTF-8 编码保存，且尽量在最前面加上 0xFEFF 这个 BOM 标记，防止 MSVC 当作 GBK 来读取。</li>
+<li>设置控制台输出编码，设置标准库调用系统API使用的编码</li>
+</ul>
+<p>在CMake中这样设置：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">if</span><span class="w"> </span><span class="p">(</span><span class="s">MSVC</span><span class="p">)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nb">add_compile_options</span><span class="p">(</span><span class="s">/Zc:preprocessor</span><span class="w"> </span><span class="s">/utf-8</span><span class="w"> </span><span class="s">/DNOMINMAX</span><span class="w"> </span><span class="s">/D_USE_MATH_DEFINES</span><span class="w"> </span><span class="s">/EHsc</span><span class="w"> </span><span class="s">/bigobj</span><span class="p">)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">else</span><span class="p">()</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nb">if</span><span class="w"> </span><span class="p">(</span><span class="s">WIN32</span><span class="p">)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="nb">add_compile_options</span><span class="p">(</span><span class="s">-finput-charset=utf-8</span><span class="w"> </span><span class="s">-fexec-charset=utf-8</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="nb">endif</span><span class="p">()</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="nb">add_compile_options</span><span class="p">(</span><span class="s">-Wall</span><span class="w"> </span><span class="s">-Wextra</span><span class="w"> </span><span class="s">-Werror=return-type</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="nb">endif</span><span class="p">()</span>
+</code></pre></div>
+<p>在源代码中：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="cp">#if _WIN32</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="n">setlocale</span><span class="p">(</span><span class="n">LC_ALL</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;.utf-8&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// 设置标准库调用系统 API 所用的编码，用于 fopen，ifstream 等函数</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="n">SetConsoleOutputCP</span><span class="p">(</span><span class="n">CP_UTF8</span><span class="p">);</span><span class="w"> </span><span class="c1">// 设置控制台输出编码，或者写 system(&quot;chcp 65001&quot;)</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="n">SetConsoleCP</span><span class="p">(</span><span class="n">CP_UTF8</span><span class="p">);</span><span class="w"> </span><span class="c1">// 设置控制台输入编码</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="cp">#endif</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="c1">// 这里开始写你的主程序吧！</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="c1">// ...</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="p">}</span>
+</code></pre></div>
+<p>IDE 配置中</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>root = true
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>[*]
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>charset = utf-8
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>utf8_bom = true 
+</code></pre></div>
+<p>这样就可以保证，无论你使用什么编译器，无论你使用什么操作系统，无论你使用什么文本编辑器，无论你使用什么编码，你的程序都可以正确的以 UTF-8 编码来读取源码，正确的以 UTF-8 编码来存储字符串常量，正确的把 UTF-8 编码的字符串路径转为 UTF-16 后调用 W 系 API</p>
+<h3 id="qt_%E4%B8%AD%E7%9A%84%E7%BC%96%E7%A0%81%E9%97%AE%E9%A2%98">Qt 中的编码问题<a class="headerlink" href="#qt_%E4%B8%AD%E7%9A%84%E7%BC%96%E7%A0%81%E9%97%AE%E9%A2%98" title="锚点">&para;</a></h3>
+<p>Todo</p>
+<h3 id="%E5%90%84%E7%A7%8D%E8%AF%AD%E8%A8%80%E5%B7%A5%E5%85%B7%E9%80%89%E6%8B%A9%E7%9A%84%E5%86%85%E7%A0%81">各种语言/工具选择的内码<a class="headerlink" href="#%E5%90%84%E7%A7%8D%E8%AF%AD%E8%A8%80%E5%B7%A5%E5%85%B7%E9%80%89%E6%8B%A9%E7%9A%84%E5%86%85%E7%A0%81" title="锚点">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>编码</th>
+<th>语言/工具</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ANSI</td>
+<td>Lua ext4 openvdb Windows"A"api Python3"byte" HTTP</td>
+</tr>
+<tr>
+<td>UTF-8</td>
+<td>Rust Go CMake Julia</td>
+</tr>
+<tr>
+<td>UTF-16</td>
+<td>Windows"W"api Java Qt Word Json NTFS(Windows)</td>
+</tr>
+<tr>
+<td>UTF-32</td>
+<td>POSIX Kotlin gcc python3"str"</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">趋势</p>
+<p>Java的内码为UTF-16，而Kotlin作为更现代的运行在JVM上的语言，其内码为更方便处理字符串的UTF-32；Rust/Go等常用于实现互联网底层服务的新兴语言，使用了更适合网络传输的UTF-8，显然无论选择拥抱哪种实现，Unicode字符集都是大势所趋</p>
+</div>
+<h2 id="%E5%90%84%E7%BC%96%E7%A0%81%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C">各编码的字符串操作<a class="headerlink" href="#%E5%90%84%E7%BC%96%E7%A0%81%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C" title="锚点">&para;</a></h2>
+<p>Todo</p>
+<h2 id="%E5%B8%B8%E8%A7%81%E4%B9%B1%E7%A0%81">常见乱码<a class="headerlink" href="#%E5%B8%B8%E8%A7%81%E4%B9%B1%E7%A0%81" title="锚点">&para;</a></h2>
+<p>Todo</p>
+<h2 id="%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99">参考资料<a class="headerlink" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99" title="锚点">&para;</a></h2>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/windows/win32/intl/unicode-and-character-sets">Unicode and Character Sets</a></li>
+<li><a href="https://utf8everywhere.org/zh-cn">UTF-8 Everywhere</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/627531212">C++ 中避免乱码</a></li>
+<li><a href="https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/setlocale-wsetlocale?view=msvc-170#utf-8-support">设置locale</a></li>
+<li><a href="https://142857.red/book/unicode/">字符编码那些事</a></li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/yourusername" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
