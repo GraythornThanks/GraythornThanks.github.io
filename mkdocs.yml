@@ -110,7 +110,7 @@ plugins:
 extra:
   social:                            # 社交媒体链接
     - icon: fontawesome/brands/github    # GitHub 图标
-      link: https://github.com/yourusername  # GitHub 链接
+      link: https://github.com/GraythornThanks  # GitHub 链接
     # - icon: fontawesome/brands/twitter   # Twitter 图标
     #   link: https://twitter.com/yourusername  # Twitter 链接
 

@@ -1,6 +1,5 @@
 ---
 date: 2024-12-31
-draft: true
 categories:
   - OpenGL
   - C++
@@ -21,14 +20,14 @@ authors:
 
 网站
 
-[LearnOpenGL](https://learnopengl-cn.github.io/)
-[OpenGL](https://www.opengl.org/)
-[OpenGL Registry](https://registry.khronos.org/OpenGL/index_gl.php)
-[opengl接口版本支持](https://docs.gl/)
+- [LearnOpenGL](https://learnopengl-cn.github.io/)
+- [OpenGL](https://www.opengl.org/)
+- [OpenGL Registry](https://registry.khronos.org/OpenGL/index_gl.php)
+- [opengl接口版本支持](https://docs.gl/)
 
 书籍
 
-- Todo
+- 红宝书 《OpenGL 编程指南》
 
 ## 使用 GLFW + GLAD
 
@@ -169,19 +168,6 @@ endfunction()
 deploy_qt_runtime(QLearn)
 ```
 
-### QShaderProgram
-
-bool QOpenGLShaderProgram::addShaderFromSourceCode(QGLShader::ShaderType type, const char * source)
-
-bool QOpenGLShaderProgram::addShaderFromSourceFile(QGLShader::ShaderType type, const QString & fileName)
-
-virtual bool QOpenGLShaderProgram::link()
-
-virtual void QOpenGLShaderProgram::bind()
-
-QString QOpenGLShaderProgram::log() const
-
-virtual void QOpenGLShaderProgram::release()
 
 
 
