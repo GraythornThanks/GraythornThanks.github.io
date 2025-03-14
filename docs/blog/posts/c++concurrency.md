@@ -1,6 +1,6 @@
 ---
-date: 2025-2-18
-draft: false
+date: 2025-02-18
+draft: true
 categories:
   - C++
 tags:
@@ -13,7 +13,7 @@ authors:
 
 《C++并发编程实战》阅读记录
 
-<!--more-->
+<!-- more -->
 
 ## C++线程基础
 
