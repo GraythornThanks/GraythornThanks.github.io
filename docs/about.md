@@ -2,18 +2,14 @@
 
 ## Who am I?
 
-I'm a software developer passionate about technology and continuous learning.
+A Software Engineer who likes modern C++
 
 ## Skills
 
-- Web Development
-- Python Programming
-- Cloud Computing
-- DevOps
+- Linux
+- C++/Python
 
 ## Contact
 
-Feel free to reach out to me through:
-
-- Email: your.email@example.com
-- GitHub: [@yourusername](https://github.com/yourusername)
+- Email: litianhe17369410843@gmail.com
+- GitHub: [@GraythornThanks](https://github.com/GraythornThanks)

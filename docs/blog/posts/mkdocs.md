@@ -13,7 +13,7 @@ authors:
 
 # Hello World！
 
-本篇作为部署时期创建的TestBlog，用于测试MkDocs的能力，将展示一些常用的Markdown语法和MkDocs的功能
+Markdown与MkDocs的使用
 
 <!-- more -->
 
@@ -167,6 +167,8 @@ E = mc^2
 # MkDocs 使用指南
 
 ## 1. MkDocs简介
+
+MkDocs 是一个用于构建静态网站的工具，[MkDocs-Material](https://squidfunk.github.io/mkdocs-material/) 是 MkDocs 的一个主题，便于了解`python`的用户通过简单的配置构建美观的博客
 
 ## 2. 安装和基本设置
 

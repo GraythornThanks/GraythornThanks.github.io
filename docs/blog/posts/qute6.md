@@ -2,9 +2,8 @@
 date: 2024-12-25
 draft: true
 categories: 
-  - C++
+  - Qt
 tags:
-  - C++
   - Qt
 authors:
   - admin

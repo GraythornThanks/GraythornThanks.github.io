@@ -104,6 +104,7 @@ plugins:
         - C++
         - Python
         - OpenGL
+        - Qt
         - other
 
 # 额外配置
@@ -119,8 +120,8 @@ nav:
   - Home: index.md                   # 首页
   - Blog:                            # 博客页面
     - blog/index.md
-  # - Categories: tags.md              # 分类页面
-  # - About: about.md                  # 关于页面
+  - About: about.md                  # 关于页面
+  
 
 extra_javascript:
   - javascripts/mathjax.js
