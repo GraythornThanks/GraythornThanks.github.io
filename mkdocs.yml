@@ -49,7 +49,11 @@ markdown_extensions:
       anchor_linenums: true          # 显示行号
   - pymdownx.inlinehilite            # 行内代码高亮
   - pymdownx.snippets                # 代码片段
-  - pymdownx.superfences             # 支持嵌套代码块
+  - pymdownx.superfences:             # 支持嵌套代码块
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:mermaid2.fence_mermaid_custom
   
   # Emoji 支持
   - pymdownx.emoji:
@@ -86,6 +90,7 @@ markdown_extensions:
 # 插件配置
 plugins:
   - search                           # 搜索功能
+  - mermaid2
   - tags                             # 标签功能
   - blog:                            # 博客插件配置
       blog_dir: blog                 # 博客目录
